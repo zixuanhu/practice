@@ -1,9 +1,12 @@
 public class longestPalindrome {
     public static void main(String[] args) {
-        String s = "babad";
+        String s = "babcbabaad";
         String answer = longestPalindrome(s);
         System.out.println(answer);
-
+        //camelCase 是用于前端
+        //snake_case 是用于后端
+        //CapitalCase 是用于class define 创建Object class PersonInfo
+        //pieChart = pie_chart
     }
 
     public static String longestPalindrome(String s) {
@@ -12,11 +15,13 @@ public class longestPalindrome {
         int maxIndex = 0;
         int maxlength = 0;
         for (int i = 0; i < s.length(); i++) {
-            if (checkPalindrome1(s, i) > maxlength || checkPalindrome2(s, i) > maxlength) {
+            int len_solo=checkPalindrome1(s, i);
+            int len_double=checkPalindrome2(s, i);
+            if (len_solo > maxlength || len_double > maxlength) {
                 maxIndex = i;
-                maxlength = Math.max(checkPalindrome1(s, i), checkPalindrome2(s, i));
+                maxlength = Math.max(len_solo,len_double);
 
-                if (checkPalindrome1(s, i) == maxlength) {
+                if (len_solo == maxlength) {
                     solo = true;
                 } else {
                     solo = false;

@@ -5,6 +5,8 @@ public class PartitionLabels {
         String s = "ababcbacadefegdehijhklij";
         List<Integer> answer = partitionLabels(s);
         System.out.println(answer.toString());
+        //s.indexOf('a') -> 0
+        //s.indexOf('a', 9) -> -1
 
     }
 
