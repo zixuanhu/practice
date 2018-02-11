@@ -19,6 +19,17 @@ public class JosephusSurvivor {
 
         }
         return people.get(0);
+//        List<Integer> list = new ArrayList<Integer>();
+//        for(int i =1; i <= n; i++) list.add(i);
+//        int i = 0;
+//        while(list.size() > 1){
+//            i += k - 1;
+//            while (i >= list.size()){
+//                i -= list.size();
+//            }
+//            list.remove(i);
+//        }
+//        return list.get(0);
     }
 
     public static int find_Index(int Index_remove, int amount_people, int k){
