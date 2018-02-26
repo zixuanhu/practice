@@ -10,38 +10,47 @@ public class arrayTotree {
     }
 
     public static void main(String[] args) {
-        int[] arr = new int[]{0, 1, 2, 3, 4, 5, 6, 7,8,9,10,11,12,13,14,15,16,17,18,19};
-        TreeNode root = buildTree(arr, arr.length / 2, arr.length);
-        System.out.println(root.left.val);
+        int[] arr = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19};
+        TreeNode root = buildTree(arr, 0, arr.length-1);
+        System.out.println(root.val);
     }
 
-    public static TreeNode buildTree(int[] arr, int i, int size) {
-        int length = 0;
-        if(i<0 || i>arr.length-1){
-            return null;
+    public static TreeNode buildTree(int[] arr, int start, int end) {
+        int mid = (start + end) / 2;
+       // System.out.println(mid + "  " + start + "   " + end);
+
+
+        TreeNode root = new TreeNode(arr[mid]);
+        if (mid == 1) {
+            root.left = new TreeNode(arr[0]);
+            //print(root);
         }
-        if (size==1 && i>0&&i<arr.length-1){
-            length=1;
-            TreeNode a = new TreeNode(arr[i]);
-            return null;
-        } else if(size==2){
-            length=1;
-        } else if(size==3){
-            length=1;
-        } else if (size == 1) {
-            length = 0;
-        } else if (i < arr.length-1 && i > 0) {
-            length=size/4;
+        if (mid == arr.length - 2) {
+            root.right = new TreeNode(arr[arr.length - 1]);
+           // print(root);
+        }
+        if (mid != 1 && mid - 1 > 0 && (mid + 1) != start && mid != start) {
+            root.left = buildTree(arr, start, mid - 1);
+        }
+        if (mid != arr.length - 2 && mid + 1 < arr.length && (mid - 1) != end && mid != end) {
+            root.right = buildTree(arr, mid + 1, end);
+        }
+
+        //print(root);
+        return root;
+    }
+
+
+    public static void print(TreeNode root) {
+
+        if (root.left == null && root.right == null) {
+            System.out.println("root=" + root.val + " left=null" + " right= null");
+        } else if (root.left == null) {
+            System.out.println("root=" + root.val + " left=null" + " right=" + root.right.val);
+        } else if (root.right == null) {
+            System.out.println("root=" + root.val + " left=" + root.left.val + " right= null");
         } else {
-            return null;
+            System.out.println("root=" + root.val + " left=" + root.left.val + " right=" + root.right.val);
         }
-
-        TreeNode a = new TreeNode(arr[i]);
-        System.out.println("i="+i+"  left="+(i-length)+"  right="+(i + length)+"  size="+size);
-
-        a.left = buildTree(arr, i - length , size / 2);
-        a.right = buildTree(arr, i + length, size-size / 2);
-
-        return a;
     }
 }
