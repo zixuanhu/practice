@@ -16,41 +16,39 @@ public class BinaryTreeLevelOrderTraversal {
 
     public List<List<Integer>> levelOrder(TreeNode root) {
 
-        List<TreeNode> tree_list = new LinkedList<>();
+
         List<List<Integer>> final_list = new LinkedList<>();
         List<TreeNode> level_list = new LinkedList<>();
 
 
-        tree_list.add(root);
-        if(root==null){
-            return  final_list;
+        level_list.add(root);
+        if (root == null) {
+            return final_list;
         }
-        int index=0;
+        List<Integer> num= new LinkedList<>();
+        num.add(root.val);
+        final_list.add(num);
 
 
-        while (index!=tree_list.size()) {
-            TreeNode temp = tree_list.get(index);
-            if (temp.left != null) {
-                tree_list.add(temp.left);
-            }
-            if (temp.right != null) {
-                tree_list.add(temp.right);
-            }
-            index++;
-
-        }
-        index=0;
-        while(index<tree_list.size()){
-            if(!thislevel(level_list, tree_list.get(index))){
-                List<Integer> int_list=new LinkedList<>();
-                for (TreeNode node: level_list) {
-                    int_list.add(node.val);
+        while (true) {
+            List<TreeNode> temp = new LinkedList<>();
+            List<Integer> num_temp = new LinkedList<>();
+            for (TreeNode node : level_list) {
+                if (node.left != null) {
+                    temp.add(node.left);
+                    num_temp.add(node.left.val);
                 }
-                final_list.add(int_list);
-                level_list.clear();
+                if (node.right != null) {
+                    temp.add(node.right);
+                    num_temp.add(node.right.val);
+                }
             }
-            level_list.add(tree_list.get(index));
-            index++;
+            if (temp.isEmpty()) {
+                break;
+            }
+            final_list.add(num_temp);
+            level_list = temp;
+
 
         }
 
@@ -61,13 +59,8 @@ public class BinaryTreeLevelOrderTraversal {
     }
 
 
-    public boolean thislevel(List<TreeNode> cur_level, TreeNode cur_Node) {
-        for (TreeNode node : cur_level) {
-            if (node.left == cur_Node || node.right == cur_Node) {
-                return false;
-            }
-        }
-        return true;
-    }
+
+
+
 
 }
