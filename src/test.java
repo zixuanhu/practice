@@ -1,16 +1,19 @@
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 public class test {
     public static void main(String[] args) {
-        //System.out.println(reorganizeString("baba"));                                                                                                                                                                                                
-
-        int x= 100;
-        int[] arr = {1};
-        plus(arr);
-        System.out.println(Arrays.toString(arr));
-
+        TreeSet<Integer> a= new TreeSet<>();
+        a.add(3);
+        //System.out.println(a.lower(4));
+        Set<Integer> set = new HashSet<Integer>();
+        set.add(1);
+        System.out.println(set.toString());
+        set.add(1);
+        System.out.println(set.toString());
+        set.add(2);
+        System.out.println(set.toString());
+        set.add(2);
+        System.out.println(set.toString());
     }
 
     public static void plus(int[] arr){
